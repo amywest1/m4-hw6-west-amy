@@ -17,11 +17,15 @@ function getPizzaOrder() {
     `Please enter the type of crust (${formatPrice(thickCrustUpcharge)} upcharge for Thick crust)`
   )
   // set the pizza object's 'crust' property to the user's response
+  pizza.crust = crust.toLowerCase().trim()
   // HINT: prompt() returns a string
   // HINT: You may wish to use .toLowerCase() and .trim()
   // if the user specified 'thick' crust, add thickCrustUpcharge
+  if (pizza.crust === 'thick') {
+    pizza.cost += thickCrustUpcharge
+  }
   // to pizza.cost
-  // YOUR CODE HERE
+
 
   var toppings = prompt("Please enter additional toppings (comma separated)")
   // HINT: prompt() will return an empty string "" if the user presses 'OK' without entering a value
