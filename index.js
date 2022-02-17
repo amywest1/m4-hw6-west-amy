@@ -10,14 +10,15 @@ function getPizzaOrder() {
   alert("Hi, Thanks for ordering with Web to Pizza!")
   var pizza = {
     // set the 'cost' property to the basePrice
-    cost = basePrice
+    cost: basePrice,
   }
 
   var crust = prompt(
     `Please enter the type of crust (${formatPrice(thickCrustUpcharge)} upcharge for Thick crust)`
   )
   // set the pizza object's 'crust' property to the user's response
-  pizza.crust = crust.toLowerCase().trim()
+  crust = crust.trim().toLowerCase();
+  pizza.crust = crust
   // HINT: prompt() returns a string
   // HINT: You may wish to use .toLowerCase() and .trim()
   // if the user specified 'thick' crust, add thickCrustUpcharge
@@ -33,20 +34,29 @@ function getPizzaOrder() {
   // if no toppings are given, make sure pizza.toppings is set to []
   // if the user has added toppings, add toppingsFee multiplied by
   // the number of toppings added to pizza.cost
-  // YOUR CODE HERE
+  
 
   var extraCheese = confirm("Would you like extra cheese?")
   // HINT: confirm() returns a boolean
   // if the user specifies extra cheese, set pizza.extraCheese to true or false
   // if the user specifies extra cheese, add extraCheeseUpcharge to pizza.cost
-  // YOUR CODE HERE
+  pizza.extraCheese = extraCheese
+  if (pizza.extraCheese === true) {
+    pizza.cost += extraCheeseUpcharge
+  }
 
   var isDelivery = confirm("Is your order for Delivery?")
   // HINT: confirm() returns a boolean
   // if order is for delivery, set pizza.saleType to "delivery"
   // if order is NOT for delivery, set pizza.saleType to "take-out"
   // if order if for delivery, add deliveryFee to pizza.cost
-  // YOUR CODE HERE
+  pizza.saleType = isDelivery
+  if (pizza.saleType === false) {
+    pizza.saleType = "take-out"
+  } else {
+    pizza.saleType = "delivery";
+    pizza.cost += deliveryFee;
+  }
 
   return pizza
 }
